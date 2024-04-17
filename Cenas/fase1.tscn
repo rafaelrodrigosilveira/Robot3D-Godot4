@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://ceamdkk32cpwv"]
+
+[ext_resource type="Texture2D" uid="uid://cnpcrhqtwax4f" path="res://Cenas/anime_skybox.jpg" id="1_2cu71"]
+[ext_resource type="PackedScene" uid="uid://c84cbcgs0yy1x" path="res://Cenas/player.tscn" id="1_cw5tc"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kju5v"]
+panorama = ExtResource("1_2cu71")
+
+[sub_resource type="Sky" id="Sky_n2oil"]
+sky_material = SubResource("PanoramaSkyMaterial_kju5v")
+
+[sub_resource type="Environment" id="Environment_xcv0b"]
+background_mode = 2
+sky = SubResource("Sky_n2oil")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5ln1w"]
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_f1kvv"]
+data = PackedVector3Array(1, 0, 1, -1, 0, 1, 1, 0, -1, -1, 0, 1, -1, 0, -1, 1, 0, -1)
+
+[node name="World" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xcv0b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.892192, 0.0703976, 0.446136, -0.444494, 0.312066, 0.839666, -0.0801135, -0.947449, 0.309714, -0.617626, 23.9799, 3.408)
+shadow_enabled = true
+
+[node name="floor" type="MeshInstance3D" parent="."]
+transform = Transform3D(30, 0, 0, 0, 30, 0, 0, 0, 30, 0, 0, 0)
+mesh = SubResource("PlaneMesh_5ln1w")
+metadata/_edit_group_ = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_f1kvv")
+
+[node name="player" parent="." instance=ExtResource("1_cw5tc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.89258, 3.7238)

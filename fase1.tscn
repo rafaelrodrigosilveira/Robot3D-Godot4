@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://ceamdkk32cpwv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_tqdam"]
+size = Vector3(5, 0.5, 5)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_cggtf"]
+
+[sub_resource type="Sky" id="Sky_mre0j"]
+sky_material = SubResource("ProceduralSkyMaterial_cggtf")
+
+[sub_resource type="Environment" id="Environment_xcv0b"]
+background_mode = 2
+sky = SubResource("Sky_mre0j")
+
+[node name="World" type="Node3D"]
+
+[node name="ground_MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_tqdam")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.89258, 3.7238)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_xcv0b")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.892192, 0.0703979, 0.446136, -0.451656, 0.139062, 0.881288, -4.44089e-16, -0.987778, 0.155866, -0.784509, 7.48185, 0)

@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://c84cbcgs0yy1x"]
+
+[ext_resource type="Script" path="res://Cenas/player.gd" id="1_6dbnt"]
+[ext_resource type="PackedScene" uid="uid://cy36aygvs66pn" path="res://ASSETS/godot-4-3D-Characters-main/models/gobot/gobot_skin.tscn" id="2_s778b"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r3e5w"]
+radius = 0.284333
+height = 1.24677
+
+[node name="player" type="CharacterBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("1_6dbnt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.659993, 0)
+shape = SubResource("CapsuleShape3D_r3e5w")
+
+[node name="GobotSkin" parent="." instance=ExtResource("2_s778b")]
